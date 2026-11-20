@@ -1,20 +1,23 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zihan Ren | Data Analytics Portfolio</title>
+  <title>任子涵 | 数据分析个人作品集</title>
   <style>
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "PingFang SC", "Microsoft YaHei", sans-serif;
       color: #253047;
       background: #f8fafc;
-      line-height: 1.7;
+      line-height: 1.8;
     }
+
     nav {
       padding: 20px 8%;
       display: flex;
@@ -22,24 +25,49 @@
       align-items: center;
       background: white;
     }
+
     nav a {
       color: #475569;
       text-decoration: none;
-      margin-left: 20px;
+      margin-left: 24px;
     }
+
+    nav a:hover { color: #315caa; }
+
     .hero {
       padding: 110px 8%;
       background: #eaf1ff;
     }
+
     .hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1.15;
-      margin: 12px 0;
+      font-size: clamp(36px, 6vw, 60px);
+      line-height: 1.3;
+      margin: 15px 0;
     }
-    .hero p { max-width: 650px; font-size: 18px; }
-    .tag { color: #4169b1; font-weight: 600; }
-    section { padding: 65px 8%; max-width: 1200px; margin: auto; }
-    h2 { font-size: 30px; margin-bottom: 20px; }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 18px;
+    }
+
+    .tag {
+      color: #4169b1;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 65px 8%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 22px;
+    }
+
+    h3 { margin-top: 12px; }
+
     .card {
       background: white;
       border: 1px solid #e2e8f0;
@@ -47,6 +75,7 @@
       padding: 28px;
       margin-top: 20px;
     }
+
     .button {
       display: inline-block;
       background: #315caa;
@@ -56,7 +85,25 @@
       text-decoration: none;
       margin-top: 16px;
     }
-    footer { text-align: center; padding: 35px; color: #64748b; }
+
+    .button:hover { background: #244987; }
+
+    .skill-tag {
+      display: inline-block;
+      background: #eaf1ff;
+      color: #315caa;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin: 5px 5px 5px 0;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: #64748b;
+    }
+
     @media(max-width: 600px) {
       nav { flex-wrap: wrap; gap: 10px; }
       nav a { margin-left: 10px; }
@@ -64,73 +111,118 @@
     }
   </style>
 </head>
+
 <body>
 
+<!-- 导航栏 -->
 <nav>
-  <strong>Zihan Ren</strong>
+  <strong>任子涵 · 个人作品集</strong>
   <div>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
+    <a href="#about">关于我</a>
+    <a href="#projects">项目经历</a>
+    <a href="#skills">专业技能</a>
   </div>
 </nav>
 
+<!-- 首页介绍 -->
 <div class="hero">
   <div class="tag">DATA ANALYTICS PORTFOLIO</div>
-  <h1>Hi, I'm Zihan Ren.</h1>
+
+  <h1>你好，我是任子涵。</h1>
+
   <p>
-    I am passionate about data analytics, machine learning,
-    and transforming complex data into actionable business insights.
+    热爱数据分析、机器学习与商业分析，
+    致力于通过数据挖掘业务价值，
+    将复杂的数据转化为清晰、可执行的业务洞察。
   </p>
-  <a class="button" href="#projects">Explore My Projects</a>
+
+  <a class="button" href="#projects">探索我的项目 →</a>
 </div>
 
+<!-- 关于我 -->
 <section id="about">
-  <h2>About Me</h2>
+  <h2>关于我</h2>
+
   <p>
-    I am currently pursuing an MSc in Information Engineering
-    at The Chinese University of Hong Kong.
-    I graduated from the University of Washington with a
-    degree in Applied Mathematics (Data Science), achieving
-    a GPA of 3.96/4.0.
+    目前就读于香港中文大学信息工程理学硕士项目
+    （MSc in Information Engineering）。
+    本科毕业于美国华盛顿大学
+    （University of Washington），
+    主修应用数学（数据科学方向），
+    GPA 为 3.96/4.0。
   </p>
+
   <p>
-    My interests include data analytics, product analytics,
-    business intelligence, and machine learning.
+    具备数据清洗、统计分析、机器学习建模和数据可视化经验，
+    熟悉 Python、SQL、Tableau 等工具。
+    关注数据分析、产品分析与商业智能领域，
+    希望通过数据驱动的方法解决实际业务问题。
   </p>
 </section>
 
+<!-- 项目经历 -->
 <section id="projects">
-  <h2>Featured Projects</h2>
+  <h2>精选项目</h2>
+
   <div class="card">
     <div class="tag">SQL · MySQL · Tableau</div>
-    <h3>E-commerce User Growth & Conversion Funnel Analysis</h3>
+
+    <h3>电商用户增长与转化漏斗分析</h3>
+
     <p>
-      Analyzed 21,739 customer events across 10,000 shopping
-      sessions to identify conversion bottlenecks, evaluate
-      marketing channel performance, and propose data-driven
-      business recommendations.
+      基于 21,739 条用户行为记录和 10,000 个购物会话，
+      使用 MySQL 进行数据处理与指标计算，
+      并通过 Tableau 构建交互式数据分析仪表板。
     </p>
+
     <p>
-      Built an interactive Tableau dashboard featuring
-      conversion funnels, marketing performance,
-      customer segmentation, and revenue analysis.
+      从用户转化漏斗、营销渠道、地区、设备和商品类别
+      等维度分析业务表现，识别关键转化瓶颈，
+      并提出数据驱动的业务优化建议及 A/B 测试方案。
     </p>
+
+    <a class="button" href="ecommerce.html">
+      查看项目详情 →
+    </a>
   </div>
 </section>
 
+<!-- 专业技能 -->
 <section id="skills">
-  <h2>Technical Skills</h2>
+  <h2>专业技能</h2>
+
   <div class="card">
-    <p><strong>Programming:</strong> Python, SQL, R, MATLAB, Java, C++</p>
-    <p><strong>Data Analytics:</strong> Pandas, NumPy, Excel, MySQL, Tableau</p>
-    <p><strong>Machine Learning:</strong> Scikit-learn, XGBoost, Random Forest, Regression</p>
-    <p><strong>Tools:</strong> Jupyter Notebook, VS Code, GitHub, Figma</p>
+    <h3>编程语言</h3>
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">SQL</span>
+    <span class="skill-tag">R</span>
+    <span class="skill-tag">MATLAB</span>
+    <span class="skill-tag">Java</span>
+    <span class="skill-tag">C++</span>
+
+    <h3>数据分析与可视化</h3>
+    <span class="skill-tag">MySQL</span>
+    <span class="skill-tag">Tableau</span>
+    <span class="skill-tag">Excel</span>
+    <span class="skill-tag">Pandas</span>
+    <span class="skill-tag">NumPy</span>
+
+    <h3>机器学习</h3>
+    <span class="skill-tag">Scikit-learn</span>
+    <span class="skill-tag">XGBoost</span>
+    <span class="skill-tag">Random Forest</span>
+    <span class="skill-tag">Regression</span>
+
+    <h3>开发与设计工具</h3>
+    <span class="skill-tag">Jupyter Notebook</span>
+    <span class="skill-tag">VS Code</span>
+    <span class="skill-tag">GitHub</span>
+    <span class="skill-tag">Figma</span>
   </div>
 </section>
 
 <footer>
-  © 2026 Zihan Ren · Data Analytics Portfolio
+  © 2026 任子涵 · 数据分析个人作品集
 </footer>
 
 </body>
