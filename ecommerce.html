@@ -4,287 +4,626 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="电商用户增长与转化漏斗分析项目，展示 MySQL 数据处理、Tableau 可视化、业务洞察及 A/B 测试方案。"
+  >
+
   <title>电商用户增长与转化漏斗分析 | 任子涵</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    :root {
+      --navy: #10233e;
+      --blue: #315caa;
+      --text: #253047;
+      --muted: #64748b;
+      --background: #f8fafc;
+      --border: #e2e8f0;
+      --serif: "Noto Serif SC", "Songti SC", serif;
+      --sans: "Noto Sans SC", "PingFang SC", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      background: #f8fafc;
-      color: #253047;
-      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
-                   "Microsoft YaHei", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      font-family: var(--sans);
       line-height: 1.8;
     }
+
+    a {
+      color: inherit;
+    }
+
+    /* 顶部导航 */
+
     nav {
       padding: 20px 8%;
       background: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
     }
-    nav a { color: #315caa; text-decoration: none; }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 14px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-back:hover {
+      opacity: 0.7;
+    }
+
+    /* 项目封面 */
+
     .hero {
-      padding: 75px 8%;
-      background: #eaf1ff;
+      padding: 80px 8%;
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(151, 187, 239, 0.24),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #eaf1ff 0%,
+          #f2f6fd 100%
+        );
     }
+
+    .tag {
+      color: #4169b1;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
     .hero h1 {
-      max-width: 850px;
+      max-width: 900px;
+      font-family: var(--serif);
       font-size: clamp(30px, 5vw, 50px);
-      line-height: 1.3;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #17365c;
+      margin: 18px 0 24px;
     }
-    .hero p { max-width: 750px; }
-    .tag { color: #4169b1; font-weight: 600; }
-    main { max-width: 1100px; margin: auto; padding: 30px 6%; }
-    section { margin: 55px 0; }
-    h2 { font-size: 27px; }
-    h3 { margin-bottom: 8px; }
+
+    .hero p {
+      max-width: 800px;
+      color: #526780;
+      font-size: 16px;
+    }
+
+    /* 主体内容 */
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 6%;
+    }
+
+    section {
+      margin: 65px 0;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 30px);
+      font-weight: 600;
+      color: #1b3658;
+      margin-bottom: 22px;
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 600;
+      color: #24486f;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    /* 卡片 */
+
     .card {
       background: white;
-      padding: 26px;
-      border: 1px solid #e2e8f0;
+      padding: 30px;
+      border: 1px solid var(--border);
       border-radius: 14px;
-      margin: 16px 0;
+      margin: 18px 0;
+      box-shadow: 0 8px 25px rgba(24, 48, 84, 0.035);
     }
+
+    .card p {
+      color: #52647c;
+      margin-top: 8px;
+    }
+
+    /* KPI 指标 */
+
     .metrics {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      gap: 18px;
     }
-    .metric { text-align: center; }
+
+    .metric {
+      text-align: center;
+      padding: 32px 15px;
+    }
+
     .metric strong {
       display: block;
-      font-size: 30px;
-      color: #315caa;
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 34px);
+      color: var(--blue);
+      margin-bottom: 5px;
     }
-    .dashboard {
-      background: #e9eef5;
-      border: 1px dashed #94a3b8;
+
+    .metric span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Tableau 仪表板 */
+
+    .dashboard-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 28px;
       border-radius: 12px;
-      padding: 70px 20px;
-      text-align: center;
-      color: #64748b;
+      background: white;
+      border: 1px solid var(--border);
     }
+
+    .dashboard-container iframe {
+      display: block;
+      width: 1400px;
+      height: 1000px;
+      border: none;
+    }
+
+    .dashboard-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .dashboard-link a {
+      color: var(--blue);
+      font-size: 14px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .dashboard-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* 业务建议 */
+
+    .recommendation h3 {
+      margin-top: 28px;
+    }
+
+    .recommendation h3:first-child {
+      margin-top: 0;
+    }
+
+    /* 返回按钮 */
+
+    .back-container {
+      text-align: center;
+      margin: 75px 0 45px;
+    }
+
     .button {
       display: inline-block;
-      background: #315caa;
+      background: var(--blue);
       color: white;
       text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+      padding: 13px 30px;
+      border-radius: 30px;
+      font-size: 14px;
+      transition: all 0.3s;
     }
+
+    .button:hover {
+      background: #234982;
+      transform: translateY(-3px);
+    }
+
+    /* 页脚 */
+
     footer {
       text-align: center;
-      padding: 35px;
-      color: #64748b;
+      padding: 30px;
+      background: #10233e;
+      color: #b8cbe2;
+      font-size: 12px;
     }
-    @media(max-width: 650px) {
-      .metrics { grid-template-columns: 1fr; }
-      nav { gap: 15px; }
+
+    /* 手机适配 */
+
+    @media (max-width: 650px) {
+      nav {
+        padding: 18px 6%;
+      }
+
+      .nav-logo {
+        font-size: 14px;
+      }
+
+      .nav-back {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 65px 6%;
+      }
+
+      main {
+        padding: 25px 6%;
+      }
+
+      section {
+        margin: 50px 0;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<nav>
-  <strong>任子涵 · 数据分析作品集</strong>
-  <a href="index.html">← 返回首页</a>
-</nav>
+  <!-- 顶部导航 -->
 
-<header class="hero">
-  <div class="tag">数据分析项目案例</div>
-  <h1>电商用户增长与转化漏斗分析</h1>
-  <p>
-    基于 MySQL 与 Tableau 的端到端数据分析项目，
-    通过分析用户购物行为、转化漏斗及营销渠道表现，
-    识别关键业务问题并提出数据驱动的优化建议。
-  </p>
-  <p><strong>技术工具：</strong>MySQL · SQL · Tableau</p>
-</header>
+  <nav>
+    <a class="nav-logo" href="index.html">
+      Zihan Ren
+    </a>
 
-<main>
+    <a class="nav-back" href="index.html#projects">
+      ← 返回作品集
+    </a>
+  </nav>
 
-<section>
-  <div class="metrics">
-    <div class="card metric">
-      <strong>10,000</strong>总会话数
+  <!-- 项目介绍 -->
+
+  <header class="hero">
+
+    <div class="tag">
+      数据分析项目案例
     </div>
-    <div class="card metric">
-      <strong>11.15%</strong>整体购买转化率
+
+    <h1>
+      电商用户增长与转化漏斗分析
+    </h1>
+
+    <p>
+      基于 MySQL 与 Tableau 的端到端数据分析项目，
+      通过分析用户购物行为、转化漏斗及营销渠道表现，
+      识别关键业务问题并提出数据驱动的优化建议。
+    </p>
+
+    <p>
+      <strong>技术工具：</strong>
+      MySQL · SQL · Tableau
+    </p>
+
+  </header>
+
+  <main>
+
+    <!-- KPI -->
+
+    <section>
+      <div class="metrics">
+
+        <div class="card metric">
+          <strong>10,000</strong>
+          <span>总会话数</span>
+        </div>
+
+        <div class="card metric">
+          <strong>11.15%</strong>
+          <span>整体购买转化率</span>
+        </div>
+
+        <div class="card metric">
+          <strong>1.23M</strong>
+          <span>总收入（数据集单位）</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 01 项目概述 -->
+
+    <section>
+
+      <h2>01. 项目概述</h2>
+
+      <p>
+        本项目基于包含 21,739 条用户行为事件、
+        10,000 个购物会话的电商练习数据集，
+        分析用户从商品浏览到最终购买的完整转化过程。
+      </p>
+
+      <p>
+        项目旨在识别转化漏斗中的关键流失环节，
+        对比不同营销渠道、地区、设备及商品类别的业务表现，
+        并提出可进一步验证的业务优化建议。
+      </p>
+
+    </section>
+
+    <!-- 02 数据处理 -->
+
+    <section>
+
+      <h2>02. 数据处理与分析</h2>
+
+      <p>
+        使用 MySQL 对原始事件级数据进行清洗和整理，
+        将用户行为记录聚合为会话级分析数据。
+        在此基础上计算购买转化率、漏斗各阶段转化情况、
+        营销渠道表现及收入等核心指标。
+      </p>
+
+      <p>
+        随后将处理后的数据导入 Tableau，
+        构建交互式可视化仪表板，
+        支持多维度业务分析。
+      </p>
+
+    </section>
+
+    <!-- 03 Tableau Dashboard -->
+
+    <section>
+
+      <h2>03. Tableau 交互式数据仪表板</h2>
+
+      <p>
+        仪表板包含用户转化漏斗、营销渠道表现、
+        地区与设备转化率、商品类别收入分布、
+        每日转化趋势及会话明细。
+      </p>
+
+      <p>
+        用户可以通过日期范围和营销渠道筛选器，
+        动态查看不同条件下的业务表现。
+      </p>
+
+      <div class="dashboard-container">
+
+        <iframe
+          src="https://public.tableau.com/views/E-commerceConversionFunnelDashboard_17951885609060/E-commerceConversionFunnelDashboard?:showVizHome=no&amp;:embed=yes"
+          width="1400"
+          height="1000"
+          title="电商用户增长与转化漏斗分析仪表板"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+
+      </div>
+
+      <p class="dashboard-link">
+
+        <a
+          href="https://public.tableau.com/views/E-commerceConversionFunnelDashboard_17951885609060/E-commerceConversionFunnelDashboard"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          在 Tableau Public 中查看完整交互式仪表板 ↗
+
+        </a>
+
+      </p>
+
+    </section>
+
+    <!-- 04 核心发现 -->
+
+    <section>
+
+      <h2>04. 核心发现与业务洞察</h2>
+
+      <div class="card">
+
+        <h3>发现一：结算环节存在明显流失</h3>
+
+        <p>
+          仅有 <strong>31.18%</strong> 的结算会话最终完成购买，
+          流失率达到 <strong>68.82%</strong>，
+          是整个购物漏斗中流失比例最高的环节。
+          因此，结算流程是值得优先调查的潜在优化方向。
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>发现二：社交媒体渠道表现领先</h3>
+
+        <p>
+          Social Media 的购买转化率为
+          <strong>11.97%</strong>，
+          是所有营销渠道中最高的，同时贡献了
+          <strong>336,351.14</strong> 的收入。
+          该渠道值得进一步分析其获客成本与投入产出表现。
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>发现三：不同地区存在转化差异</h3>
+
+        <p>
+          East 地区的购买转化率最高，为
+          <strong>12.28%</strong>，
+          South 地区最低，为
+          <strong>9.53%</strong>，
+          两者相差 2.75 个百分点。
+          这一差异值得结合流量来源与商品偏好进一步分析。
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>发现四：设备间转化率差异较小</h3>
+
+        <p>
+          Mobile、Tablet 和 Desktop 的购买转化率
+          分别为 <strong>11.32%</strong>、
+          <strong>11.11%</strong> 和
+          <strong>11.02%</strong>。
+          相比之下，整体结算环节的流失问题
+          更值得优先关注。
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- 05 业务优化建议 -->
+
+    <section>
+
+      <h2>05. 业务优化建议</h2>
+
+      <div class="card recommendation">
+
+        <h3>1. 优化结算流程</h3>
+
+        <p>
+          进一步分析用户在结算阶段的退出行为，
+          测试减少填写步骤、提前展示运费、
+          优化支付流程等方案，
+          以降低潜在购买阻力。
+        </p>
+
+        <h3>2. 提升营销渠道效率</h3>
+
+        <p>
+          结合获客成本、渠道收入及转化率，
+          评估不同渠道的营销效率，
+          为后续预算分配提供数据支持。
+        </p>
+
+        <h3>3. 探索精细化运营策略</h3>
+
+        <p>
+          根据不同地区和商品类别的表现，
+          进一步研究用户偏好，
+          探索个性化推荐与定向促销机会。
+        </p>
+
+        <h3>4. A/B Test 实验方案</h3>
+
+        <p>
+          针对结算环节的高流失率，
+          提出一项 A/B 测试：
+          将用户随机分配至原有结算流程（对照组）
+          和简化结算流程（实验组），
+          以结算到购买转化率作为核心评估指标，
+          判断优化方案是否能够有效提高购买完成率。
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- 06 项目总结 -->
+
+    <section>
+
+      <h2>06. 项目总结</h2>
+
+      <p>
+        本项目完成了从原始数据处理、
+        SQL 指标计算、Tableau 可视化
+        到业务洞察与优化建议的完整分析流程。
+      </p>
+
+      <p>
+        通过这个项目，我进一步实践了如何将用户行为数据
+        转化为可解释的业务指标，
+        并围绕转化率优化、营销效率及产品体验
+        提出可验证的改进方向。
+      </p>
+
+    </section>
+
+    <!-- 返回作品集的项目区域 -->
+
+    <div class="back-container">
+
+      <a
+        class="button"
+        href="index.html#projects">
+
+        ← 返回作品集
+
+      </a>
+
     </div>
-    <div class="card metric">
-      <strong>1.23M</strong>总收入（数据集单位）
-    </div>
-  </div>
-</section>
 
-<section>
-  <h2>01. 项目概述</h2>
-  <p>
-    本项目基于包含 21,739 条用户行为事件、
-    10,000 个购物会话的电商练习数据集，
-    分析用户从商品浏览到最终购买的完整转化过程。
-  </p>
-  <p>
-    项目旨在识别转化漏斗中的关键流失环节，
-    对比不同营销渠道、地区、设备及商品类别的业务表现，
-    并提出可进一步验证的业务优化建议。
-  </p>
-</section>
+  </main>
 
-<section>
-  <h2>02. 数据处理与分析</h2>
-  <p>
-    使用 MySQL 对原始事件级数据进行清洗和整理，
-    将用户行为记录聚合为会话级分析数据。
-    在此基础上计算购买转化率、漏斗各阶段转化情况、
-    营销渠道表现及收入等核心指标。
-  </p>
-  <p>
-    随后将处理后的数据导入 Tableau，
-    构建交互式可视化仪表板，支持多维度业务分析。
-  </p>
-</section>
-
-<section>
-  <h2>03. Tableau 交互式数据仪表板</h2>
-  <p>
-    仪表板包含用户转化漏斗、营销渠道表现、
-    地区与设备转化率、商品类别收入分布、
-    每日转化趋势及会话明细。
-  </p>
-  <p>
-    用户可以通过日期范围和营销渠道筛选器，
-    动态查看不同条件下的业务表现。
-  </p>
-
-<div style="width: 100%; overflow-x: auto; margin-top: 25px;">
-  <iframe
-    src="https://public.tableau.com/views/E-commerceConversionFunnelDashboard_17951885609060/E-commerceConversionFunnelDashboard?:showVizHome=no&:embed=yes"
-    width="1400"
-    height="1000"
-    style="border: none; display: block;"
-    title="电商用户增长与转化漏斗分析仪表板"
-    loading="lazy">
-  </iframe>
-</div>
-
-
-<p style="text-align: center; margin-top: 15px;">
-  <a
-    href="https://public.tableau.com/views/E-commerceConversionFunnelDashboard_17951885609060/E-commerceConversionFunnelDashboard"
-    target="_blank"
-    rel="noopener noreferrer"
-    style="color: #315caa;">
-    在 Tableau Public 中查看完整交互式仪表板 ↗
-  </a>
-</p>
-
-</section>
-
-<section>
-  <h2>04. 核心发现与业务洞察</h2>
-
-  <div class="card">
-    <h3>发现一：结算环节存在明显流失</h3>
-    <p>
-      仅有 <strong>31.18%</strong> 的结算会话最终完成购买，
-      流失率达到 <strong>68.82%</strong>，
-      是整个购物漏斗中流失比例最高的环节。
-      因此，结算流程是值得优先调查的潜在优化方向。
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>发现二：社交媒体渠道表现领先</h3>
-    <p>
-      Social Media 的购买转化率为
-      <strong>11.97%</strong>，
-      是所有营销渠道中最高的，同时贡献了
-      <strong>336,351.14</strong> 的收入。
-      该渠道值得进一步分析其获客成本与投入产出表现。
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>发现三：不同地区存在转化差异</h3>
-    <p>
-      East 地区的购买转化率最高，为
-      <strong>12.28%</strong>，
-      South 地区最低，为
-      <strong>9.53%</strong>，
-      两者相差 2.75 个百分点。
-      这一差异值得结合流量来源与商品偏好进一步分析。
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>发现四：设备间转化率差异较小</h3>
-    <p>
-      Mobile、Tablet 和 Desktop 的购买转化率
-      分别为 <strong>11.32%</strong>、
-      <strong>11.11%</strong> 和
-      <strong>11.02%</strong>。
-      相比之下，整体结算环节的流失问题
-      更值得优先关注。
-    </p>
-  </div>
-</section>
-
-<section>
-  <h2>05. 业务优化建议</h2>
-
-  <div class="card">
-    <h3>1. 优化结算流程</h3>
-    <p>
-      进一步分析用户在结算阶段的退出行为，
-      测试减少填写步骤、提前展示运费、
-      优化支付流程等方案，以降低潜在购买阻力。
-    </p>
-
-    <h3>2. 提升营销渠道效率</h3>
-    <p>
-      结合获客成本、渠道收入及转化率，
-      评估不同渠道的营销效率，
-      为后续预算分配提供数据支持。
-    </p>
-
-    <h3>3. 探索精细化运营策略</h3>
-    <p>
-      根据不同地区和商品类别的表现，
-      进一步研究用户偏好，
-      探索个性化推荐与定向促销机会。
-    </p>
-  </div>
-
-  <h3>A/B 测试方案</h3>
-  <p>
-    针对结算环节的高流失率，提出一项 A/B 测试：
-    将用户随机分配至原有结算流程（对照组）
-    和简化结算流程（实验组），
-    以结算到购买转化率作为核心评估指标，
-    判断优化方案是否能够有效提高购买完成率。
-  </p>
-</section>
-
-<section>
-  <h2>06. 项目总结</h2>
-  <p>
-    本项目完成了从原始数据处理、SQL 指标计算、
-    Tableau 可视化到业务洞察与优化建议的完整分析流程。
-  </p>
-  <p>
-    通过这个项目，我进一步实践了如何将用户行为数据
-    转化为可解释的业务指标，并围绕转化率优化、
-    营销效率及产品体验提出可验证的改进方向。
-  </p>
-</section>
-
-<a class="button" href="index.html">返回作品集首页</a>
-
-</main>
-
-<a href="index.html#projects">← 返回作品集</a>
+  <footer>
+    © 2026 Zihan Ren · Data Analytics Portfolio
+  </footer>
 
 </body>
 </html>
