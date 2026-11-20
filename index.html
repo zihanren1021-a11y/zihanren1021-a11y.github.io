@@ -10,15 +10,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-/* 四张卡片：标题保持左对齐，正文居中 */
-.info-card h3 {
-  text-align: left;
-}
-
-.info-card p {
-  text-align: center;
-}
 
   <style>
     :root {
@@ -369,13 +360,22 @@
       font-size: 21px;
       color: #24486f;
       margin: 0 0 16px;
+    } 
+    .info-card h3 {
+      font-family: var(--serif);
+      font-size: 21px;
+      color: #24486f;
+      margin: 0 0 16px;
+      text-align: left;
     }
 
     .info-card p {
       color: #5d7087;
       font-size: 14px;
       margin: 8px 0;
+      text-align: center;
     }
+
 
     .resume-section {
       text-align: center;
