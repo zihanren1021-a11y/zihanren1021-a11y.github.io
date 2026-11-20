@@ -4,226 +4,652 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>任子涵 | 数据分析个人作品集</title>
+  <meta name="description" content="任子涵的个人作品集，展示数据分析、产品分析、商业洞察与项目经历。">
+  <title>任子涵 | 个人作品集</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    :root {
+      --navy: #0c1930;
+      --blue: #142a4a;
+      --accent: #8fbbe9;
+      --text: #22334c;
+      --muted: #61738b;
+      --serif: "Noto Serif SC", "Songti SC", serif;
+      --sans: "Noto Sans SC", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont,
-                   "PingFang SC", "Microsoft YaHei", sans-serif;
-      color: #253047;
-      background: #f8fafc;
+      color: var(--text);
+      font-family: var(--sans);
       line-height: 1.8;
+      background: #f7f9fc;
     }
 
-    nav {
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-    }
-
-    nav a {
-      color: #475569;
+    a {
+      color: inherit;
       text-decoration: none;
-      margin-left: 24px;
     }
 
-    nav a:hover { color: #315caa; }
-
-    .hero {
-      padding: 110px 8%;
-      background: #eaf1ff;
+    button, a {
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 60px);
-      line-height: 1.3;
-      margin: 15px 0;
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 7%;
+      background: rgba(9, 22, 42, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.09);
     }
 
-    .hero p {
-      max-width: 700px;
-      font-size: 18px;
-    }
-
-    .tag {
-      color: #4169b1;
+    .logo {
+      font-family: var(--serif);
+      font-size: 17px;
+      letter-spacing: 2px;
+      color: white;
       font-weight: 600;
     }
 
-    section {
-      padding: 65px 8%;
-      max-width: 1200px;
-      margin: auto;
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
     }
 
-    h2 {
-      font-size: 30px;
-      margin-bottom: 22px;
+    .nav-links a {
+      color: #d5e2f4;
+      font-size: 13px;
+      transition: color .25s;
     }
 
-    h3 { margin-top: 12px; }
-
-    .card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 28px;
-      margin-top: 20px;
-    }
-
-    .button {
-      display: inline-block;
-      background: #315caa;
+    .nav-links a:hover {
       color: white;
-      padding: 11px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 16px;
     }
 
-    .button:hover { background: #244987; }
+    .resume-link {
+      border: 1px solid rgba(173, 207, 244, .55);
+      padding: 7px 17px;
+      border-radius: 30px;
+    }
 
-    .skill-tag {
+    /* 第一页 */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+      background:
+        radial-gradient(ellipse at 20% 25%, rgba(51,112,179,.3), transparent 38%),
+        radial-gradient(ellipse at 85% 75%, rgba(48,97,163,.3), transparent 40%),
+        linear-gradient(135deg, #091529 0%, #122b4b 55%, #0c1b32 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(169,207,249,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(169,207,249,.055) 1px, transparent 1px);
+      background-size: 65px 65px;
+      mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border: 1px solid rgba(154,194,238,.22);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .orb-one {
+      width: 520px;
+      height: 520px;
+      top: 8%;
+      right: -190px;
+    }
+
+    .orb-two {
+      width: 340px;
+      height: 340px;
+      bottom: -180px;
+      left: -80px;
+    }
+
+    .orb-three {
+      width: 170px;
+      height: 170px;
+      top: 18%;
+      left: 10%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hello {
+      font-family: var(--serif);
+      font-size: 21px;
+      letter-spacing: 5px;
+      color: #b9d2ee;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 92px);
+      font-weight: 600;
+      letter-spacing: 5px;
+      line-height: 1.4;
+      margin: 0 0 28px;
+    }
+
+    .hero-education {
+      font-family: var(--serif);
+      font-size: clamp(13px, 1.4vw, 17px);
+      font-weight: 400;
+      letter-spacing: 1px;
+      color: #d3e1f3;
+      margin: 8px 0;
+    }
+
+    .hero-button {
       display: inline-block;
-      background: #eaf1ff;
-      color: #315caa;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin: 5px 5px 5px 0;
+      margin-top: 46px;
+      padding: 13px 32px;
+      border: 1px solid rgba(205,228,255,.7);
+      border-radius: 40px;
+      color: white;
       font-size: 14px;
+      letter-spacing: 2px;
+      transition: all .3s ease;
+    }
+
+    .hero-button:hover {
+      background: white;
+      color: var(--navy);
+      transform: translateY(-3px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #a9c4e4;
+      font-size: 12px;
+      letter-spacing: 3px;
+    }
+
+    /* 通用页面 */
+    .section {
+      padding: 115px 8%;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--sans);
+      color: #6a8ab3;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(32px, 4vw, 48px);
+      margin: 0 0 28px;
+      line-height: 1.4;
+    }
+
+    /* 第二页 */
+    .about {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+    }
+
+    .about-text {
+      max-width: 850px;
+      color: #51647e;
+      font-size: 16px;
+      line-height: 2.2;
+    }
+
+    .about-text strong {
+      color: #1b385e;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .tag {
+      background: #eaf1fa;
+      color: #365c88;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+    }
+
+    /* 第三页 */
+    .projects {
+      background: #edf3fa;
+      min-height: 85vh;
+    }
+
+    .project-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 36px 40px;
+      margin-top: 34px;
+      background: white;
+      border: 1px solid #dce7f3;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(20,48,88,.045);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: #a8c6e9;
+      box-shadow: 0 18px 45px rgba(20,48,88,.12);
+    }
+
+    .project-category {
+      font-size: 12px;
+      color: #6687b0;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: 24px;
+      margin: 0 0 12px;
+      color: #1c3556;
+    }
+
+    .project-card p {
+      color: #61738b;
+      font-size: 14px;
+      max-width: 680px;
+      margin: 0;
+    }
+
+    .project-tools {
+      font-size: 12px;
+      color: #6284ab;
+      margin-top: 18px;
+    }
+
+    .project-arrow {
+      font-size: 30px;
+      color: #4778b4;
+      flex-shrink: 0;
+      transition: transform .3s;
+    }
+
+    .project-card:hover .project-arrow {
+      transform: translate(5px, -5px);
+    }
+
+    /* 更多关于我 */
+    .more {
+      background: white;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 26px;
+      margin-top: 40px;
+    }
+
+    .info-card {
+      background: #f5f8fc;
+      border: 1px solid #e3ebf5;
+      border-radius: 16px;
+      padding: 30px;
+    }
+
+    .info-card h3 {
+      font-family: var(--serif);
+      font-size: 21px;
+      color: #24486f;
+      margin: 0 0 16px;
+    }
+
+    .info-card p {
+      color: #5d7087;
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .resume-section {
+      text-align: center;
+      padding: 85px 24px;
+      background: #10233e;
+      color: white;
+    }
+
+    .resume-section h2 {
+      font-family: var(--serif);
+      font-size: 32px;
+      margin: 0 0 15px;
+    }
+
+    .resume-section p {
+      color: #bed0e7;
+      font-size: 14px;
+    }
+
+    .resume-button {
+      display: inline-block;
+      margin-top: 22px;
+      border: 1px solid #a8c6e8;
+      border-radius: 30px;
+      padding: 12px 32px;
+      transition: all .3s;
+    }
+
+    .resume-button:hover {
+      background: white;
+      color: #10233e;
     }
 
     footer {
       text-align: center;
-      padding: 35px;
-      color: #64748b;
+      background: #0a182b;
+      color: #91a7c2;
+      font-size: 12px;
+      padding: 25px;
     }
 
-    @media(max-width: 600px) {
-      nav { flex-wrap: wrap; gap: 10px; }
-      nav a { margin-left: 10px; }
-      .hero { padding: 75px 8%; }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        padding: 15px 5%;
+        gap: 10px;
+      }
+
+      .logo {
+        font-size: 13px;
+        letter-spacing: 1px;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .resume-link {
+        padding: 5px 9px;
+      }
+
+      .hero h1 {
+        letter-spacing: 2px;
+      }
+
+      .hero-education {
+        line-height: 2;
+      }
+
+      .section {
+        padding: 85px 6%;
+      }
+
+      .project-card {
+        padding: 25px;
+      }
+
+      .project-card h3 {
+        font-size: 20px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero-content {
+        animation: none;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<!-- 导航栏 -->
-<nav>
-  <strong>任子涵 · 个人作品集</strong>
-  <div>
-    <a href="#about">关于我</a>
-    <a href="#projects">项目经历</a>
-    <a href="#skills">专业技能</a>
-  </div>
-</nav>
+  <!-- 顶部导航 -->
+  <nav class="navbar">
+    <a class="logo" href="#home">任子涵</a>
 
-<!-- 首页介绍 -->
-<div class="hero">
-  <div class="tag">DATA ANALYTICS PORTFOLIO</div>
+    <div class="nav-links">
+      <a href="#about">关于我</a>
+      <a href="#projects">项目</a>
+      <a href="#more">更多</a>
+      <a class="resume-link" href="resume.pdf" target="_blank" rel="noopener noreferrer">简历</a>
+    </div>
+  </nav>
 
-  <h1>你好，我是任子涵。</h1>
+  <!-- 第一页：欢迎 -->
+  <section class="hero" id="home">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
 
-  <p>
-    热爱数据分析、机器学习与商业分析，
-    致力于通过数据挖掘业务价值，
-    将复杂的数据转化为清晰、可执行的业务洞察。
-  </p>
+    <div class="hero-content">
+      <div class="hello">你好，</div>
 
-  <a class="button" href="#projects">探索我的项目 →</a>
-</div>
+      <h1>我是任子涵。</h1>
 
-<!-- 关于我 -->
-<section id="about">
-  <h2>关于我</h2>
+      <p class="hero-education">
+        信息工程硕士 @ 香港中文大学
+      </p>
 
-  <p>
-    目前就读于香港中文大学信息工程理学硕士项目
-    （MSc in Information Engineering）。
-    本科毕业于美国华盛顿大学
-    （University of Washington），
-    主修应用数学（数据科学方向），
-    GPA 为 3.96/4.0。
-  </p>
+      <p class="hero-education">
+        应用数学 — 数据科学 @ 华盛顿大学西雅图分校
+      </p>
 
-  <p>
-    具备数据清洗、统计分析、机器学习建模和数据可视化经验，
-    熟悉 Python、SQL、Tableau 等工具。
-    关注数据分析、产品分析与商业智能领域，
-    希望通过数据驱动的方法解决实际业务问题。
-  </p>
-</section>
+      <!-- 点击跳转到第二页 -->
+      <a href="#about" class="hero-button">
+        探索我的作品 ↓
+      </a>
+    </div>
 
-<!-- 项目经历 -->
-<section id="projects">
-  <h2>精选项目</h2>
+    <div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+  </section>
 
-  <div class="card">
-    <div class="tag">SQL · MySQL · Tableau</div>
+  <!-- 第二页：关于我 -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-label">ABOUT ME / 01</div>
+      <h2 class="section-title">关于我</h2>
 
-    <h3>电商用户增长与转化漏斗分析</h3>
+      <div class="about-text">
+        <p>
+          你好！我是一名拥有
+          <strong>应用数学、数据科学与信息工程</strong>
+          跨学科背景的学生。
+          本科毕业于华盛顿大学西雅图分校，
+          目前在香港中文大学攻读信息工程硕士学位。
+        </p>
 
-    <p>
-      基于 21,739 条用户行为记录和 10,000 个购物会话，
-      使用 MySQL 进行数据处理与指标计算，
-      并通过 Tableau 构建交互式数据分析仪表板。
-    </p>
+        <p>
+          我对<strong>数据分析、产品分析与商业洞察</strong>充满兴趣。
+          在学习和实践过程中，我积累了数据清洗、
+          统计建模、数据可视化和业务指标分析的经验，
+          希望通过数据发现问题、理解用户行为，
+          并为实际决策提供支持。
+        </p>
+      </div>
 
-    <p>
-      从用户转化漏斗、营销渠道、地区、设备和商品类别
-      等维度分析业务表现，识别关键转化瓶颈，
-      并提出数据驱动的业务优化建议及 A/B 测试方案。
-    </p>
+      <div class="tags">
+        <span class="tag">数据分析</span>
+        <span class="tag">产品分析</span>
+        <span class="tag">商业洞察</span>
+        <span class="tag">用户行为分析</span>
+      </div>
+    </div>
+  </section>
 
-    <a class="button" href="ecommerce.html">
-      查看项目详情 →
+  <!-- 第三页：项目 -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-label">SELECTED PROJECTS / 02</div>
+      <h2 class="section-title">精选项目</h2>
+
+      <p style="color:#61738b; max-width:720px;">
+        通过真实的数据分析流程，将原始数据转化为可解释的指标、
+        可交互的可视化结果与具有实际意义的业务洞察。
+      </p>
+
+      <!-- 整张卡片均可点击 -->
+      <a class="project-card" href="ecommerce.html">
+        <div>
+          <div class="project-category">
+            BUSINESS ANALYTICS · DATA VISUALIZATION
+          </div>
+
+          <h3>电商用户增长与转化漏斗分析</h3>
+
+          <p>
+            基于电商用户会话数据，使用 SQL 进行数据处理，
+            并通过 Tableau 构建交互式仪表板，
+            分析用户转化漏斗、渠道表现、地区差异、
+            设备转化率和收入结构，识别潜在的转化优化机会。
+          </p>
+
+          <div class="project-tools">
+            MySQL · Tableau · 数据可视化 · 转化率分析
+          </div>
+        </div>
+
+        <span class="project-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 第四部分：更多关于我 -->
+  <section class="section more" id="more">
+    <div class="container">
+      <div class="section-label">MORE ABOUT ME / 03</div>
+      <h2 class="section-title">更多关于我</h2>
+
+      <div class="info-grid">
+
+        <div class="info-card">
+          <h3>教育背景</h3>
+          <p><strong>香港中文大学</strong></p>
+          <p>信息工程硕士</p>
+          <p><strong>华盛顿大学西雅图分校</strong></p>
+          <p>应用数学 — 数据科学</p>
+          <p>GPA：3.96 / 4.00</p>
+        </div>
+
+        <div class="info-card">
+          <h3>数据分析工具</h3>
+          <p>Python · R · SQL · Excel</p>
+          <p>Tableau · MySQL · Pandas · NumPy</p>
+          <p>数据清洗 · 数据可视化 · 统计分析</p>
+        </div>
+
+        <div class="info-card">
+          <h3>实践经历</h3>
+          <p><strong>浪潮</strong> — 数据科学相关实习</p>
+          <p><strong>中国联通</strong> — 产品分析相关实习</p>
+          <p>积累了数据处理、指标分析、自动化报表及业务协作经验。</p>
+        </div>
+
+        <div class="info-card">
+          <h3>专业兴趣</h3>
+          <p>数据驱动决策</p>
+          <p>产品与用户行为分析</p>
+          <p>业务指标体系与可视化</p>
+          <p>数据分析在实际商业场景中的应用</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 简历 -->
+  <section class="resume-section" id="resume">
+    <h2>了解更多关于我的经历</h2>
+    <p>欢迎查看我的完整简历，了解教育背景、项目和实习经历。</p>
+
+    <a class="resume-button"
+       href="resume.pdf"
+       target="_blank"
+       rel="noopener noreferrer">
+      查看我的简历 ↗
     </a>
-  </div>
-</section>
+  </section>
 
-<!-- 专业技能 -->
-<section id="skills">
-  <h2>专业技能</h2>
-
-  <div class="card">
-    <h3>编程语言</h3>
-    <span class="skill-tag">Python</span>
-    <span class="skill-tag">SQL</span>
-    <span class="skill-tag">R</span>
-    <span class="skill-tag">MATLAB</span>
-    <span class="skill-tag">Java</span>
-    <span class="skill-tag">C++</span>
-
-    <h3>数据分析与可视化</h3>
-    <span class="skill-tag">MySQL</span>
-    <span class="skill-tag">Tableau</span>
-    <span class="skill-tag">Excel</span>
-    <span class="skill-tag">Pandas</span>
-    <span class="skill-tag">NumPy</span>
-
-    <h3>机器学习</h3>
-    <span class="skill-tag">Scikit-learn</span>
-    <span class="skill-tag">XGBoost</span>
-    <span class="skill-tag">Random Forest</span>
-    <span class="skill-tag">Regression</span>
-
-    <h3>开发与设计工具</h3>
-    <span class="skill-tag">Jupyter Notebook</span>
-    <span class="skill-tag">VS Code</span>
-    <span class="skill-tag">GitHub</span>
-    <span class="skill-tag">Figma</span>
-  </div>
-</section>
-
-<footer>
-  © 2026 任子涵 · 数据分析个人作品集
-</footer>
+  <footer>
+    © 2026 任子涵 · Personal Portfolio
+  </footer>
 
 </body>
 </html>
